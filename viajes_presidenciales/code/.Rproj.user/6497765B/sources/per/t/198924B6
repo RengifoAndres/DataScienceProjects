@@ -3,7 +3,7 @@
     "path": "C:/Users/afrj1/OneDrive - Universidad de los andes/DataScienceProjects/viajes_presidenciales/code/merge_petro_duque.R",
     "project_path": "merge_petro_duque.R",
     "type": "r_source",
-    "hash": "0",
+    "hash": "1710700469",
     "contents": "",
     "dirty": false,
     "created": 1751816988815.0,
@@ -13,15 +13,15 @@
         "tempName": "Untitled1",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "51,0",
-        "scrollLine": "37"
+        "cursorPosition": "93,42",
+        "scrollLine": "71"
     },
     "folds": "",
-    "lastKnownWriteTime": 1751827466,
+    "lastKnownWriteTime": 1751828579,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1751827466468,
+    "last_content_update": 1751828579535,
     "read_only": false,
     "read_only_alternatives": []
 }

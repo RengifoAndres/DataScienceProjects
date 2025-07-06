@@ -38,8 +38,10 @@ all_trips<- duque_trips |>
   bind_rows(petro_trips)
 
 
-
-
+last_days<- all_trips |>
+  group_by(president) |>
+  arrange(desc(relative_time)) |>
+  slice_head(n = 1) 
 
 terms_data<-tibble(
   relative_time= c(365, 365, 730, 730,1095, 1095) ,
@@ -63,11 +65,16 @@ ggplot(all_trips, aes(x=relative_time, y=cum_days, colour=president )) +
     mapping=aes( label = fecha ), 
     fontface = "bold", size = 5, nudge_y = 2
     )+
+  geom_label_repel(
+    data=last_days,
+    mapping=aes( label = cum_days ), 
+    fontface = "bold", size = 5, nudge_x = 2
+  )+
   labs(
     size= "Duración del Viaje (Dias)", 
     title= "Viajes Presidenciales", 
-    caption= "Datos Extraidos de Wikipedia ", 
-    subtitle= "Dias Acumulados Fuera del País en función del tiempo desde posesión", 
+    caption= "Datos Extraidos de Wikipedia y procesados por @RengifoAndres", 
+    subtitle= "Días Acumulados Fuera del País en Función del Tiempo desde Posesión", 
     x = "Días desde Posesión",
     y = "Días Acumulados fuera del País", 
     color= "Presidente"
