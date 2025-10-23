@@ -1,6 +1,6 @@
 {
     "id": "FF6335C9",
-    "path": "C:/Users/afrj1/OneDrive - Universidad de los andes/DataScienceProjects/viajes_presidenciales/code/11_graph_acum_sum.R",
+    "path": "C:/Users/afrj1/OneDrive - Universidad de los andes/DataScienceProjects/1_viajes_presidenciales/code/11_graph_acum_sum.R",
     "project_path": "11_graph_acum_sum.R",
     "type": "r_source",
     "hash": "1774482778",
@@ -12,8 +12,8 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "6,0",
-        "scrollLine": "33"
+        "cursorPosition": "80,0",
+        "scrollLine": "62"
     },
     "folds": "",
     "lastKnownWriteTime": 1751852951,
