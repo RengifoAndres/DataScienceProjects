@@ -13,3 +13,10 @@
 1_viajes_presidenciales/code/.Rproj.user/shared/notebooks/paths
 *.pper
 5_secop_integrado/data/SECOP_Integrado_20251025.csv
+*.csv
+*.DTA
+*.SAV
+*.sav
+*.CSV
+*.dta
+*.zip

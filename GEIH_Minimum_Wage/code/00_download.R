@@ -2,8 +2,10 @@
 library(pacman)
 p_load(rvest, 
        httr, 
+       stringr, 
+       zip, 
+       tidyverse, 
        stringr)
-
 
 ### step 0 clear all
 
@@ -11,17 +13,48 @@ rm(list= ls())
 
 #### define paths
 
+
+
 data_path <- "../data"
 raw <- paste0(data_path, "/raw" )
 
+###### define the years
 
-# 1) Definir URL del GEIH 2020
-url_base <- "https://microdatos.dane.gov.co/index.php/catalog/780/get-microdata"
+# Define the catalog IDs mapping for GEIH
+catalog_ids <- c(
+  "2013" = 68,
+  "2014" = 328,
+  "2015" = 356,
+  "2016" = 427,
+  "2017" = 458,
+  "2018" = 547,
+  "2019" = 599,
+  "2020" = 780,
+  "2021" = 701
+)
 
 
-# 2) Crear carpeta 2020 si no existe
-dir.create( paste0(raw, "/2020" ), showWarnings = FALSE)
+urls<- list()
+count<- 1
+for (year in 2013:2021) {
+  
+  # Implementation using your structure
+  if (as.character(year) %in% names(catalog_ids)) {
+    id <- catalog_ids[as.character(year)]
+    url_base <- paste0("https://microdatos.dane.gov.co/index.php/catalog/", id, "/get-microdata")
+    urls[count] <- url_base
+    count<- 1 + count
+  } else {
+    stop("Year not found in the catalog mapping.")
+  }
+  
 
+# 1) Remove folder if it exists
+unlink(file.path(raw, year), recursive = TRUE, force = TRUE)
+  
+# 2) Create folder if it doesn't exist
+dir.create(file.path(raw, year), showWarnings = FALSE)
+  
 # 3) Leer la página HTML
 pagina <- read_html(url_base)
 
@@ -31,47 +64,57 @@ links <- pagina %>%
   html_attr("onclick")
 
 
-
 zip_links <- str_extract(links, "https?://[^']+") |> str_trim()
 zip_links <- unique(zip_links)
-zip_links <- zip_links[1:12]
 
 
 zip_name <- str_extract(links, "'[^']+\\.zip'") |> str_replace_all("'", "")
 zip_name <- unique(zip_name)
 
 
-
-
-file_name <- basename(zip_links[1])
-destfile <- file.path(paste0(raw, "/2020" ), zip_name[1])
-
-message("Descargando: ", file_name)
-try(
-  download.file(zip_links[1], destfile, mode = "wb", quiet = FALSE)
-)
-
-
-p_load(zip)
-
-zip::unzip(destfile, exdir = paste0(raw, "2020" ))
-
-
-##### did it up until here
-
-
-
-
-
-# 6) Descargar todos los archivos .zip
-for (link in zip_links) {
-  file_name <- basename(link)
-  destfile <- file.path("C:/Users/afrj1/Downloads/2020", file_name)
-  
-  message("Descargando: ", file_name)
-  try(
-    download.file(link, destfile, mode = "wb", quiet = FALSE)
-  )
+if (length(zip_links)== length(zip_name)) {
+  print("link and names have the same size")
 }
 
-message("¡Descarga completada!")
+name_links= tibble(
+  names= zip_name, 
+  links= zip_links
+)
+
+name_links <- name_links |> 
+  filter(str_detect(names, fixed(".csv.")))
+
+### THIS 
+if (nrow(name_links)!=0) {
+  
+  zip_name <- name_links$names
+  zip_links <- name_links$links
+  
+}
+
+  for (i in 1:length(zip_name)) {
+
+    if (is.na(zip_links[i])) {
+      next
+    }
+    
+  file_name <- basename(zip_links[i])
+  destfile <- file.path(paste0(raw, "/", year ), zip_name[i])
+  print(zip_name[i])
+  message("Descargando: ", file_name)
+  try(
+    download.file(zip_links[i], destfile, mode = "wb", quiet = FALSE)
+  )
+  
+  
+  Sys.sleep(5) 
+  print("Wait is over. Code execution continues.")
+  
+}
+
+}
+
+##### End
+
+
+
