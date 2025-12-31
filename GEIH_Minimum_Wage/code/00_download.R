@@ -82,7 +82,7 @@ name_links= tibble(
 )
 
 name_links <- name_links |> 
-  filter(str_detect(names, fixed(".csv.")))
+  filter(str_detect(names, fixed(".csv")))
 
 ### THIS 
 if (nrow(name_links)!=0) {
