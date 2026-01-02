@@ -116,7 +116,7 @@ for (year in 2022:2025) {
       csv_files  <-  files |> 
         filter(str_detect(filename, fixed("CSV.zip")))
       
-      zip::unzip(destfile, files = csv_files$filename, exdir = paste0(raw, "/", 2023 ))
+      zip::unzip(destfile, files = csv_files$filename, exdir = paste0(raw, "/", year ))
       
     }
     else {
