@@ -11,7 +11,15 @@ Análisis de la primera ronda de la Encuesta Pulso Migrante (DANE, 2021), enfoca
 
 - **Nivel educativo por año de llegada:** cómo varía la composición educativa de los migrantes según cuándo entraron al país, ponderado por el factor de expansión (FEX).
 - **Vinculación al PEP por año de llegada:** qué proporción de migrantes obtuvo el Permiso Especial de Permanencia (PEP) según su año de entrada a Colombia (variable `mi3`).
+- **Distribución de edad por año de llegada:** violin plot con boxplot interno mostrando cómo cambia el perfil etario de los migrantes según el año de llegada.
+- **Composición por sexo por año de llegada:** evolución de la proporción hombre/mujer entre las distintas cohortes de llegada.
+- **Razones de migración:** proporción de migrantes que citó cada razón de salida de Venezuela (respuesta múltiple): económica, familiar, inseguridad, política, salud, entre otras.
+- **Situación laboral por año de llegada:** cómo se distribuyen las actividades principales (empleo, desempleo, estudio, hogar) según el año de entrada al país.
 
 <img src="07_Encuesta_pulso_migracion/output/educacion_por_anio_llegada.png" height="150"/>
 <img src="07_Encuesta_pulso_migracion/output/pep_por_anio_llegada.png" height="150"/>
+<img src="07_Encuesta_pulso_migracion/output/edad_por_anio_llegada.png" height="150"/>
+<img src="07_Encuesta_pulso_migracion/output/sexo_por_anio_llegada.png" height="150"/>
+<img src="07_Encuesta_pulso_migracion/output/razones_migracion.png" height="150"/>
+<img src="07_Encuesta_pulso_migracion/output/empleo_por_anio_llegada.png" height="150"/>
 
