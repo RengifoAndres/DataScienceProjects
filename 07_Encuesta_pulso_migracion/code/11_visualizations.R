@@ -21,7 +21,7 @@ edu_colors <- c(
 ################
 
 edu_anio <- epm |>
-  filter(!is.na(anio_llegada), !is.na(educacion), anio_llegada >= 2013) |>
+  filter(!is.na(anio_llegada), !is.na(educacion), anio_llegada >= 2015) |>
   group_by(anio_llegada, educacion) |>
   summarise(n_w = sum(FEX, na.rm = TRUE), .groups = "drop") |>
   group_by(anio_llegada) |>
