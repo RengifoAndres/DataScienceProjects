@@ -61,7 +61,7 @@ ggsave("../output/educacion_por_anio_llegada.png", p_edu,
 ################
 
 pep_anio <- epm |>
-  filter(!is.na(anio_llegada), anio_llegada >= 2013) |>
+  filter(!is.na(anio_llegada), anio_llegada >= 2015) |>
   group_by(anio_llegada) |>
   summarise(
     total_w = sum(FEX, na.rm = TRUE),
@@ -104,7 +104,7 @@ ggsave("../output/pep_por_anio_llegada.png", p_pep,
 ################
 
 edad_anio <- epm |>
-  filter(!is.na(anio_llegada), !is.na(Ide10), anio_llegada >= 2013,
+  filter(!is.na(anio_llegada), !is.na(Ide10), anio_llegada >= 2015,
          Ide10 >= 10, Ide10 <= 80)
 
 p_edad <- ggplot(edad_anio, aes(x = factor(anio_llegada), y = Ide10, weight = FEX)) +
@@ -137,7 +137,7 @@ ggsave("../output/edad_por_anio_llegada.png", p_edad,
 ################
 
 sexo_anio <- epm |>
-  filter(!is.na(anio_llegada), !is.na(Ide9), anio_llegada >= 2013) |>
+  filter(!is.na(anio_llegada), !is.na(Ide9), anio_llegada >= 2015) |>
   mutate(sexo = if_else(Ide9 == 1, "Hombre", "Mujer")) |>
   group_by(anio_llegada, sexo) |>
   summarise(n_w = sum(FEX, na.rm = TRUE), .groups = "drop") |>
@@ -253,7 +253,7 @@ actividad_colors <- c(
 )
 
 empleo_anio <- epm |>
-  filter(!is.na(anio_llegada), !is.na(ml5), anio_llegada >= 2013) |>
+  filter(!is.na(anio_llegada), !is.na(ml5), anio_llegada >= 2015) |>
   mutate(actividad = factor(
     recode(as.character(ml5), !!!actividad_labels),
     levels = actividad_labels
