@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:microdatos.dane.gov.co)",
+      "Bash(cat)",
+      "Bash(powershell -Command \"& 'C:/Program Files/R/R-4.5.0/bin/Rscript.exe' 'C:/Users/afrj1/temp_explore2.R'\")"
+    ]
+  }
+}
